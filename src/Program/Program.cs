@@ -61,7 +61,20 @@ namespace CompAndDel
         }
 
         public void Parte4(){
-            
+            PictureProvider provider = new PictureProvider();
+            IPicture picture = provider.GetPicture(@"beer.jpg");
+            PipeNull pipeNull = new PipeNull();
+            FilterTwitter filterTwitter = new FilterTwitter(FilterSaveImage.Path);
+            FilterConditional filterConditional = new FilterConditional();
+            FilterNegative filterNegative = new FilterNegative();
+            FilterGreyscale filterGreyscale = new FilterGreyscale();
+            FilterSaveImage filterSaveImage = new FilterSaveImage();
+            PipeSerial pipeSerialSave1 = new PipeSerial(filterSaveImage, pipeNull);
+            PipeSerial pipeSerialTwitter1 = new PipeSerial(filterTwitter, pipeSerialSave1);
+            PipeConditional pipeConditional = new PipeConditional(filterConditional, pipeSerialSave1, filterNegative, filterTwitter);
+            PipeSerial pipeSerialSave = new PipeSerial(filterSaveImage, pipeConditional);
+            PipeSerial pipeSerialGrey = new PipeSerial(filterGreyscale, pipeSerialSave);
+            pipeSerialGrey.Send(picture);
         }
     }
 }
