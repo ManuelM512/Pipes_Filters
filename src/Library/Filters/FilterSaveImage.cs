@@ -6,8 +6,8 @@ namespace CompAndDel.Filters
 {
     public class FilterSaveImage : IFilter {
 
-        int cantImgs = 0;
-        public string Path = "NewStage.jpg";
+       //int cantImgs = 0;
+        public static string Path = "NewStage.jpg";
         public IPicture Filter(IPicture image)
         {
             PictureProvider provider = new PictureProvider();

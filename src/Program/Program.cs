@@ -44,7 +44,7 @@ namespace CompAndDel
         }
 
         public static void Parte3(){
-             PictureProvider provider = new PictureProvider();
+            PictureProvider provider = new PictureProvider();
             IPicture picture = provider.GetPicture(@"beer.jpg");
             PipeNull pipeNull = new PipeNull();
             FilterTwitter filterTwitter = new FilterTwitter(FilterSaveImage.Path);
